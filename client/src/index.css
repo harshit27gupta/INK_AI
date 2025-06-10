@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import "tailwindcss";
+
+/* Apply font globally */
+* {
+  font-family: "Inter", sans-serif;
+}
+
+/* Hide scrollbar in all browsers */
+::-webkit-scrollbar {
+  display: none;
+}
+
+html {
+  overflow-x: hidden;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+
+body {
+  overflow-x: hidden;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(30px);}
+  to { opacity: 1; transform: translateY(0);}
+}
+.animate-fade-in {
+  animation: fade-in 1s cubic-bezier(.4,0,.2,1) both;
+}
+.rich-text {
+  font-size: 15px;
+  color: #E5E7EB; /* soft light gray for body text */
+}
+
+.rich-text p {
+  margin-bottom: 16px;
+  color: #E5E7EB; /* consistent with base text */
+}
+
+.rich-text h1 {
+  font-size: 36px;
+  font-weight: 700;
+  color: #FFFFFF !important; /* pure white for top-level headers */
+  margin: 32px 0;
+}
+
+.rich-text h2 {
+  font-size: 22px;
+  font-weight: 700;
+  color: #D8B4FE !important; /* light violet for contrast */
+  margin: 24px 0;
+}
+
+.rich-text h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #F472B6 !important; /* rose pink accent */
+  margin: 20px 0;
+}
+
+.rich-text h4 {
+  font-size: 16px;
+  font-weight: 500;
+  color: #A78BFA !important; /* soft purple */
+  margin: 16px 0;
+}
+
+.rich-text h5 {
+  font-size: 14px;
+  font-weight: 400;
+  color: #C084FC !important; /* lavender */
+  margin: 12px 0;
+}
+
+.rich-text h6 {
+  font-size: 12px;
+  font-weight: 400;
+  color: #D1D5DB !important; /* light gray */
+  margin: 8px 0;
+}
+
+.rich-text strong {
+  font-weight: 700;
+  color: #FFFFFF; /* bold text should stand out clearly */
+}
+
+.rich-text ol {
+  margin-left: 30px;
+  list-style-type: decimal;
+  color: #E5E7EB;
+}
+
+.rich-text ul {
+  margin-left: 30px;
+  list-style-type: disc;
+  color: #E5E7EB;
+}
+
+.rich-text li {
+  margin-bottom: 8px;
+}
+
+.rich-text a {
+  color: #93C5FD; /* soft sky-blue link for good visibility */
+  text-decoration: underline;
+}
