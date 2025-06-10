@@ -62,6 +62,7 @@ const AddBlog = () => {
                await  queryClient.refetchQueries({queryKey:['dashboard',role]});
                await queryClient.refetchQueries({queryKey:['blogs']});
                await queryClient.refetchQueries({queryKey:['allBlogs']});
+               await queryClient.refetchQueries({queryKey:['yourBlogs']});
             }
         }catch(error){
             const backendMsg = error.response?.data?.message;
