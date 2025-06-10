@@ -4,6 +4,11 @@ AI-powered Blogging Platform
 Overview
 InkAI is a next-generation, AI-powered blogging platform designed to make content creation, 
 sharing, and discovery smarter and more accessible for everyone. Whether you're a writer, reader, or community builder, InkAI provides a seamless, modern experience for all.
+Successfully deployed backend on render,frontend on vercel and kept my backend alive using UptimeRobot
+
+UptimeRobot website: https://uptimerobot.com/
+
+My Website: https://ink-ai-1.vercel.app/
 
 Features:
 
