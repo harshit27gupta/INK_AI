@@ -1,0 +1,8 @@
+node_modules/ 
+client/node_modules/ 
+Server/node_modules/ 
+client/.env 
+Server/.env 
+dist/ 
+.DS_Store 
+vercel.json 
