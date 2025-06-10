@@ -108,7 +108,8 @@ const Blog = () => {
         return;
       }
        setName((role==="admin" || role==="Admin")?"Admin":user?.name || "Anonymous");
-      const {data}=await axios.post(`/api/blog/add-comment`,{blog:id,name,content:comment});
+       const name1=name;
+      const {data}=await axios.post(`/api/blog/add-comment`,{blog:id,name:name1,content:comment});
       setTimeout(async () => {
         setSubmitting(false);
         if(data.success){
