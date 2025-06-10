@@ -5,7 +5,6 @@ import jwt from 'jsonwebtoken';
 import fs from 'fs';
 import imagekit from '../Configs/imageKit.js';
 import main from '../Configs/gemini.js';
-import Joi from 'joi';
 
 export const register = async (req, res) => {
   try {
@@ -117,31 +116,17 @@ export const addBlog = async (req, res) => {
   }
 };
 
-const paginationSchema = Joi.object({
-  page: Joi.number().integer().min(1).default(1),
-  limit: Joi.number().integer().min(1).max(100).default(10)
-});
-
 export const yourBlogs = async (req, res, next) => {
   try {
     const userId = req.user.id;
-    const { error, value } = paginationSchema.validate(req.query);
-    if (error) return res.status(400).json({ success: false, message: error.message });
-    const { page, limit } = value;
-    const skip = (page - 1) * limit;
     const blogs = await Blog.find({ author: userId, isPublished: true })
       .sort({ createdAt: -1 })
-      .skip(skip)
-      .limit(limit)
       .select('title subTitle category createdAt')
       .lean();
-    const total = await Blog.countDocuments({ author: userId, isPublished: true });
     res.status(200).json({
       success: true,
       blogs,
-      total,
-      page,
-      pages: Math.ceil(total / limit)
+      total: blogs.length
     });
   } catch (error) {
     next(error);

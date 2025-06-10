@@ -3,12 +3,6 @@ import imagekit from "../Configs/imageKit.js";
 import Blog from "../Models/Blog.js";
 import Comment from "../Models/Comments.js";
 import main from "../Configs/gemini.js";
-import Joi from 'joi';
-
-const paginationSchema = Joi.object({
-  page: Joi.number().integer().min(1).default(1),
-  limit: Joi.number().integer().min(1).max(100).default(10)
-});
 
 export const addBlog = async (req,res)=>{
     try {
@@ -47,23 +41,14 @@ console.log("blog created")
 }
 export const getBlogs = async (req, res, next) => {
   try {
-    const { error, value } = paginationSchema.validate(req.query);
-    if (error) return res.status(400).json({ success: false, message: error.message });
-    const { page, limit } = value;
-    const skip = (page - 1) * limit;
     const blogs = await Blog.find({ isPublished: true })
       .sort({ createdAt: -1 })
-      .skip(skip)
-      .limit(limit)
       .select('title subTitle image description category author createdAt')
       .lean();
-    const total = await Blog.countDocuments({ isPublished: true });
     res.status(200).json({
       success: true,
       blogs,
-      total,
-      page,
-      pages: Math.ceil(total / limit)
+      total: blogs.length
     });
   } catch (error) {
     next(error);
@@ -165,22 +150,13 @@ export const getBlogComments = async (req, res, next) => {
   try {
     const { blog_id } = req.body;
     if (!blog_id) return res.status(400).json({ success: false, message: 'blog_id is required' });
-    const { error, value } = paginationSchema.validate(req.query);
-    if (error) return res.status(400).json({ success: false, message: error.message });
-    const { page, limit } = value;
-    const skip = (page - 1) * limit;
     const comments = await Comment.find({ blog: blog_id, isApproved: true })
       .sort({ createdAt: -1 })
-      .skip(skip)
-      .limit(limit)
       .lean();
-    const total = await Comment.countDocuments({ blog: blog_id, isApproved: true });
     res.status(200).json({
       success: true,
       comments,
-      total,
-      page,
-      pages: Math.ceil(total / limit)
+      total: comments.length
     });
   } catch (error) {
     next(error);
