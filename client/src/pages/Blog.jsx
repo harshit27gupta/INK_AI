@@ -166,7 +166,7 @@ const Blog = () => {
           )}
           {/* Author/Date */}
           <div className="flex items-center justify-center gap-2 text-[#D1D5DB] text-sm opacity-80 my-8">
-                <span>{data?.author?.name || "Unknown Author"}</span>
+                <span>{data?.author?.name || "Admin"}</span>
             <span className="w-1 h-1 bg-[#9CA3AF] rounded-full"></span>
             <span>Published {moment(data.createdAt).format('MMM Do, YYYY')}</span>
           </div>
