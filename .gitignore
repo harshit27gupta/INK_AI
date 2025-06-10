@@ -5,4 +5,3 @@ client/.env
 Server/.env 
 dist/ 
 .DS_Store 
-vercel.json 

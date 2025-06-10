@@ -2,7 +2,7 @@ import React from 'react'
 import { useAppContext } from '../../Context/AppContext'
 import toast from 'react-hot-toast'
 import { assets } from '../../assets/assets'  
-const BlogTableItem = ({blog,index,refetchBlogs,role}) =>{
+const BlogTableItem = ({blog,index,fetchBlogs,role}) =>{
 const {title,createdAt}=blog;
 const BlogDate=new Date(createdAt);
 const { value } = useAppContext();
@@ -14,7 +14,7 @@ const deleteBlog=async()=>{
     const {data}=await axios.post(`/api/blog/delete`,{blog_id:blog._id});
     if(data.success){
       toast.success(data.message);
-      await refetchBlogs();
+      await fetchBlogs();
     }
     else{
       toast.error(data.message);

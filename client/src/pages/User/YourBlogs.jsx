@@ -19,12 +19,13 @@ const YourBlogs = () => {
     data: blogsData = [],
     isLoading: blogsLoading,
     error: blogsError,
-    refetch: refetchBlogs
+    refetch: refetchYourBlogs
   } = useQuery({
     queryKey: ['yourBlogs'],
     queryFn: () => fetchYourBlogs(axios),
     staleTime: 1000 * 60 * 5,
-    cacheTime: 1000 * 60 * 10
+    cacheTime: 1000 * 60 * 10,
+      enabled: !!user
   });
 
   if (blogsLoading) return <div>Loading...</div>;
