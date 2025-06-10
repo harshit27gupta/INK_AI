@@ -49,6 +49,7 @@ const Blog = () => {
   const [submitting, setSubmitting] = useState(false);
   const [loading, setLoading] = useState(true);
   const queryClient=useQueryClient();
+  const [name,setName]=useState("");
   const fetchBlogData = async () =>{
     try{
       const {data}=await axios.get(`/api/blog/${id}`);
@@ -106,7 +107,7 @@ const Blog = () => {
         setSubmitting(false);
         return;
       }
-      const name=role==="admin"?"Admin":user?.name || "Anonymous";
+       setName((role==="admin" || role==="Admin")?"Admin":user?.name || "Anonymous");
       const {data}=await axios.post(`/api/blog/add-comment`,{blog:id,name,content:comment});
       setTimeout(async () => {
         setSubmitting(false);
@@ -166,7 +167,7 @@ const Blog = () => {
           )}
           {/* Author/Date */}
           <div className="flex items-center justify-center gap-2 text-[#D1D5DB] text-sm opacity-80 my-8">
-          <span>{data.author?.name || "Unknown Author"}</span>
+          <span>{name}</span>
             <span className="w-1 h-1 bg-[#9CA3AF] rounded-full"></span>
             <span>Published {moment(data.createdAt).format('MMM Do, YYYY')}</span>
           </div>
