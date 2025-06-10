@@ -121,7 +121,7 @@ export const yourBlogs = async (req, res, next) => {
     const userId = req.user.id;
     const blogs = await Blog.find({ author: userId, isPublished: true })
       .sort({ createdAt: -1 })
-      .select('title subTitle category createdAt')
+      .select('title subTitle category  description  image   createdAt')
       .lean();
     res.status(200).json({
       success: true,
