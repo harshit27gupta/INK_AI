@@ -2,12 +2,15 @@ import React from 'react'
 import { useAppContext } from '../../Context/AppContext'
 import toast from 'react-hot-toast'
 import { assets } from '../../assets/assets'  
+import { useQueryClient } from '@tanstack/react-query'
 const BlogTableItem = ({blog,index,fetchBlogs,role}) =>{
 const {title,createdAt}=blog;
 const BlogDate=new Date(createdAt);
 const { value } = useAppContext();
 const { axios } = value;
+const queryClient=useQueryClient();
 const deleteBlog=async()=>{
+
   const confirm=window.confirm("Are you sure you want to delete this blog?");
   if(!confirm) return;
   try{
@@ -15,6 +18,7 @@ const deleteBlog=async()=>{
     if(data.success){
       toast.success(data.message);
       await fetchBlogs();
+      queryClient.refetchQueries({queryKey:['allBlogs']});
     }
     else{
       toast.error(data.message);
@@ -28,7 +32,8 @@ const togglePublish=async()=>{
     const {data}=await axios.post(`/api/blog/toggle-publish`,{blog_id:blog._id});
     if(data.success){
       toast.success(data.message);
-      await refetchBlogs();
+      await fetchBlogs();
+      queryClient.refetchQueries({queryKey:['allBlogs']});
     }
     else{
       toast.error(data.message);
