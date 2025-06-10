@@ -16,8 +16,8 @@ import 'quill/dist/quill.snow.css'
 import {Toaster} from 'react-hot-toast'
 import { useAppContext } from './Context/AppContext'
 import YourBlogs from './pages/User/YourBlogs'
-import Newsletter from './components/NewsLetter'
-import NewsletterConfirm from './components/NewsLetterConfirm'
+import Newsletter from './components/Newsletter'
+import NewsletterConfirm from './components/NewsletterConfirm'
 import About from './pages/About'
 
 const App = () => {
