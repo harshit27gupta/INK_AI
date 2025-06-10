@@ -12,7 +12,7 @@ import { useAppContext } from '../Context/AppContext'
 import toast from 'react-hot-toast'
 import { useQuery } from '@tanstack/react-query'
 import Notfound from '../components/Notfound'
-
+import { useQueryClient } from '@tanstack/react-query'
 function BlogSkeleton() {
   return (
     <div className="w-full max-w-3xl mx-auto animate-pulse">
@@ -48,7 +48,7 @@ const Blog = () => {
   const [data, setData] = useState(null);
   const [submitting, setSubmitting] = useState(false);
   const [loading, setLoading] = useState(true);
-
+  const queryClient=useQueryClient();
   const fetchBlogData = async () =>{
     try{
       const {data}=await axios.get(`/api/blog/${id}`);
@@ -114,6 +114,9 @@ const Blog = () => {
           toast.success(data.message);
           e.target.reset();
           await refetchComments();
+          queryClient.refetchQueries({queryKey:['comments',id]});
+          queryClient.refetchQueries({queryKey:['dashboard',role]});
+          
         }
         else{
           toast.error(data.message);

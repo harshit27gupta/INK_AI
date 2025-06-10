@@ -165,7 +165,7 @@ export const getBlogComments = async (req, res, next) => {
 export const generateContent=async(req,res)=>{
     try {
         const {prompt}=req.body;
-        const content = await main(`Write a professional blog post about "${prompt}" using relevant keywords, engaging tone, proper structure (introduction, body, conclusion), and SEO-friendly tags. Do not ask for clarification, just write the article directly.`);
+        const content = await main(`Write a professional blog post about "${prompt}" using relevant keywords, engaging tone, proper structure (introduction, body, conclusion), and do not include seo optimized tags. Do not ask for clarification, just write the article directly like a professional human blogger.`);
         res.status(200).json({success:true,content});
     } catch (error) {
         res.status(500).json({success:false,message:error.message});

@@ -12,6 +12,7 @@ const Register = () => {
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -61,14 +62,33 @@ const Register = () => {
           required
           className="rounded-lg px-4 py-3 bg-white/20 text-zinc-100 placeholder-zinc-400 border border-white/20 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition-all"
         />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={e => setPassword(e.target.value)}
-          required
-          className="rounded-lg px-4 py-3 bg-white/20 text-zinc-100 placeholder-zinc-400 border border-white/20 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition-all"
-        />
+        <div className="relative">
+          <input
+            type={showPassword ? 'text' : 'password'}
+            placeholder="Password"
+            value={password}
+            onChange={e => setPassword(e.target.value)}
+            required
+            className="rounded-lg px-4 py-3 bg-white/20 text-zinc-100 placeholder-zinc-400 border border-white/20 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition-all w-full pr-10"
+          />
+          <span
+            className="absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer text-black hover:text-indigo-400"
+            onClick={() => setShowPassword((prev) => !prev)}
+            tabIndex={0}
+            role="button"
+            aria-label="Toggle password visibility"
+          >
+            {showPassword ? (
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M3.98 8.223A10.477 10.477 0 001.934 12.001c2.29 4.019 6.686 6.999 10.066 6.999 3.38 0 7.776-2.98 10.066-6.999a10.477 10.477 0 00-2.046-3.778M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+            ) : (
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M3 3l18 18M9.88 9.88A3 3 0 0112 9c1.657 0 3 1.343 3 3 0 .512-.13.995-.354 1.412M6.53 6.53A9.956 9.956 0 003.98 8.223m0 0A10.477 10.477 0 001.934 12.001c2.29 4.019 6.686 6.999 10.066 6.999 1.676 0 3.37-.497 4.899-1.357M3.98 8.223l12.02 12.02" />
+              </svg>
+            )}
+          </span>
+        </div>
         <button
           type="submit"
           disabled={loading}
