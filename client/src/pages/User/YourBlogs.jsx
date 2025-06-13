@@ -37,11 +37,13 @@ const YourBlogs = () => {
       {blogsData.length === 0 ? (
         <div className="text-zinc-200 text-lg">You have not written any blogs yet.</div>
       ) : (
-        <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-8 mb-24 mx-8 sm:mx-16 xl:mx-40 ml-0'>
-          {blogsData.map(blog => (
-            <BlogCard key={blog._id} blog={blog} />
-          ))}
-        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-10 pl-2 sm:pl-4 md:pl-8 pr-4">
+        {blogsData.map(blog => (
+          <BlogCard key={blog._id} blog={blog} />
+        ))}
+      </div>
+      
+      
       )}
     </div>
   )

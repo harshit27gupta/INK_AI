@@ -7,10 +7,11 @@ const BlogCard = ({ blog }) => {
 
   return (
     <div
-      onClick={() => navigate(`/blog/${_id}`)}
-      className="w-full rounded-2xl overflow-hidden shadow-xl hover:scale-105 hover:shadow-pink-500/30 duration-300 cursor-pointer bg-white/10 backdrop-blur-md border border-white/20 transition-all group"
-      style={{ boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.15)' }}
-    >
+    onClick={() => navigate(`/blog/${_id}`)}
+    className="w-full h-full min-h-[300px] rounded-2xl overflow-hidden shadow-xl hover:scale-105 hover:shadow-pink-500/30 duration-300 cursor-pointer bg-white/10 backdrop-blur-md border border-white/20 transition-all group"
+    style={{ boxShadow: '0 12px 36px 0 rgba(31, 38, 135, 0.2)' }}
+  >
+  
       <div className="relative">
         <img
           src={image}
@@ -26,18 +27,18 @@ const BlogCard = ({ blog }) => {
           {category}
         </span>
       </div>
-      <div className="p-5">
-        <h5 className="mb-2 font-bold text-lg bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
-          {title}
-        </h5>
-        <p className="mb-3 text-xs text-zinc-200 min-h-[48px]"
-          dangerouslySetInnerHTML={{
-            __html:
-              description.slice(0, 80) +
-              (description.length > 80 ? '...' : ''),
-          }}
-        ></p>
-      </div>
+      <div className="p-6">
+  <h5 className="mb-2 font-bold text-xl bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
+    {title}
+  </h5>
+  <p className="mb-3 text-sm text-zinc-200 min-h-[60px]"
+    dangerouslySetInnerHTML={{
+      __html:
+        description.slice(0, 50) + (description.length > 100 ? '...' : ''),
+    }}
+  ></p>
+</div>
+
     </div>
   );
 };
