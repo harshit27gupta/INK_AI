@@ -1,21 +1,41 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppContext } from '../Context/AppContext';
 import toast from 'react-hot-toast';
 
 const UserLogin = () => {
   const navigate = useNavigate();
-  const { value} = useAppContext();
-  const { axios, setToken,setUser } = value;
+  const { value } = useAppContext();
+  const { axios, setToken, setUser, user, loading } = value;
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [loading, setLoading] = useState(false);
+  const [loading1, setLoading1] = useState(false);
   const [error, setError] = useState('');
   const [showPassword, setShowPassword] = useState(false);
 
+  // Check for existing session
+  useEffect(() => {
+    if (!loading) {  // Wait for AppContext to finish loading
+      const storedToken = localStorage.getItem('token');
+      const storedUser = localStorage.getItem('user');
+      
+      if (storedToken && storedUser) {
+        try {
+          const parsedUser = JSON.parse(storedUser);
+          if (parsedUser && parsedUser.role === 'user') {
+            toast.success("Welcome back!");
+            navigate('/user');
+          }
+        } catch (error) {
+          console.error('Error parsing stored user:', error);
+        }
+      }
+    }
+  }, [loading, navigate]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
+    setLoading1(true);
     setError('');
     try {
       const { data } = await axios.post('/api/user/login', { email, password });
@@ -26,7 +46,6 @@ const UserLogin = () => {
         localStorage.setItem('user', JSON.stringify({ ...data.user, role: 'user' }));
         axios.defaults.headers.common['Authorization'] = data.token;
         toast.success(data.message);
-        console.log("hello user:",data.user)
         navigate('/user');
       } else {
         setError(data.message);
@@ -37,8 +56,17 @@ const UserLogin = () => {
       setError(backendMsg || err.message);
       toast.error(backendMsg || err.message);
     }
-    setLoading(false);
+    setLoading1(false);
   };
+
+  // Show loading state while AppContext is initializing
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900">
+        <div className="text-white">Loading...</div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900">
@@ -83,10 +111,10 @@ const UserLogin = () => {
         </div>
         <button
           type="submit"
-          disabled={loading}
+          disabled={loading1}
           className="w-full py-3 font-bold rounded-lg bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white shadow-lg hover:from-pink-500 hover:to-indigo-500 hover:scale-105 transition-all text-lg focus:outline-none focus:ring-2 focus:ring-indigo-400"
         >
-          {loading ? 'Logging in...' : 'Login'}
+          {loading1 ? 'Logging in...' : 'Login'}
         </button>
         <div className="text-center text-zinc-300 mt-2">
           Not registered?{' '}
