@@ -16,6 +16,8 @@ const BlogCard = ({ blog }) => {
         <img
           src={image}
           alt={""}
+          width={400}
+          height={225}
           className="aspect-video w-full object-cover group-hover:opacity-90 transition duration-300"
         />
       </div>

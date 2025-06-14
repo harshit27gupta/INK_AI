@@ -109,13 +109,18 @@ const AddBlog = () => {
         </div>
         <div className="mb-6">
           <label className="block text-zinc-200 text-lg font-semibold mb-2">Cover Image</label>
-          <input
-            type="file"
-            name="image"
-            onChange={handleChange}
-            className="w-full px-4 py-2 rounded-lg bg-white/5 border border-zinc-400/30 text-zinc-200"
-            accept="image/*"
-          />
+          <div className="flex items-center gap-4">
+            {formData.image && (
+              <img src={URL.createObjectURL(formData.image)} alt="Preview" width={96} height={96} className="w-24 h-24 object-contain border border-zinc-400/30 rounded-lg" />
+            )}
+            <input
+              type="file"
+              name="image"
+              onChange={handleChange}
+              className="w-full px-4 py-2 rounded-lg bg-white/5 border border-zinc-400/30 text-zinc-200"
+              accept="image/*"
+            />
+          </div>
         </div>
         <button
           type="submit"

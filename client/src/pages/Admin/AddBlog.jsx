@@ -104,8 +104,8 @@ const AddBlog = () => {
             <form onSubmit={onSubmitHandler} className="w-full max-w-2xl bg-white/10 backdrop-blur-md rounded-2xl shadow-2xl border border-white/20 p-8 flex flex-col gap-6">
                 <h1 className="text-3xl sm:text-4xl font-extrabold bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent mb-2 text-center">Add New Blog</h1>
                 <div className="flex flex-col items-center gap-2">
-                    <label htmlFor="image" className="cursor-pointer flex flex-col items-center justify-center w-40 h-40 bg-white/20 border-2 border-dashed border-white/30 rounded-xl hover:bg-white/30 transition-all">
-                        <img src={!image ? assets.upload_area : URL.createObjectURL(image)} alt="Upload" className="w-24 h-24 object-contain" />
+                    <label htmlFor="image" className="cursor-pointer flex flex-col items-center justify-center w-40 h-40 bg-white/20 border-2 border-dashed border-white/30 rounded-xl hover:bg-white/30 transition-all aspect-square">
+                        <img src={!image ? assets.upload_area : URL.createObjectURL(image)} alt="Upload" width={96} height={96} className="w-24 h-24 object-contain" />
                         <input type="file" id='image' hidden required onChange={handleImageChange} />
                         <span className="text-xs text-zinc-200 mt-2">Upload Thumbnail</span>
                     </label>

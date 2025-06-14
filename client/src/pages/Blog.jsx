@@ -154,7 +154,7 @@ const Blog = () => {
         <div className="w-full max-w-3xl mx-auto">
           {/* Blog Image */}
           {data.image && (
-            <img src={data.image} alt={data.title} className="w-full max-h-80 object-cover rounded-xl shadow mb-8" />
+            <img src={data.image} alt={data.title} width={800} height={320} className="w-full max-h-80 object-cover rounded-xl shadow mb-8 aspect-video" />
           )}
           {/* Title */}
           <h1 className="text-4xl sm:text-5xl font-extrabold text-center bg-gradient-to-r from-[#A5B4FC] via-[#C084FC] to-[#F472B6] bg-clip-text text-transparent mb-4 drop-shadow-lg">
@@ -188,7 +188,7 @@ const Blog = () => {
   <div key={index} className="p-5 rounded-2xl bg-white/10 dark:bg-zinc-900/60 backdrop-blur-md border border-white/10 shadow-lg transition-all duration-300 hover:shadow-2xl hover:scale-105 animate-fade-in">
     <div className="flex justify-between items-start">
       <div className="flex items-center gap-3 mb-1">
-        <img src={assets.user_icon} alt="" className="w-8 h-8 rounded-full bg-zinc-200" />
+        <img src={assets.user_icon} alt="" width={32} height={32} className="w-8 h-8 rounded-full bg-zinc-200" />
         <span className="font-bold text-base bg-gradient-to-r from-[#A5B4FC] via-[#C084FC] to-[#F472B6] bg-clip-text text-transparent">
           {item.name}
         </span>
@@ -218,13 +218,13 @@ const Blog = () => {
               <span className="text-zinc-300 font-medium">Share this article on social media</span>
               <div className="flex gap-4 mt-2">
                 <a href="#" title="Share on Facebook" className="w-14 h-14 flex items-center justify-center rounded-full bg-white/10 hover:bg-gradient-to-r hover:from-indigo-400 hover:to-pink-400 hover:scale-110 transition-all">
-                  <img src={assets.facebook_icon} alt="Facebook" className="w-8 h-8" />
+                  <img src={assets.facebook_icon} alt="Facebook" width={32} height={32} className="w-8 h-8" />
                 </a>
                 <a href="#" title="Share on Twitter" className="w-14 h-14 flex items-center justify-center rounded-full bg-white/10 hover:bg-gradient-to-r hover:from-indigo-400 hover:to-pink-400 hover:scale-110 transition-all">
-                  <img src={assets.twitter_icon} alt="Twitter" className="w-8 h-8" />
+                  <img src={assets.twitter_icon} alt="Twitter" width={32} height={32} className="w-8 h-8" />
                 </a>
                 <a href="#" title="Share on Google+" className="w-14 h-14 flex items-center justify-center rounded-full bg-white/10 hover:bg-gradient-to-r hover:from-indigo-400 hover:to-pink-400 hover:scale-110 transition-all">
-                  <img src={assets.googleplus_icon} alt="Google" className="w-8 h-8" />
+                  <img src={assets.googleplus_icon} alt="Google" width={32} height={32} className="w-8 h-8" />
                 </a>
               </div>
             </div>
